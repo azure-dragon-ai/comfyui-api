@@ -70,7 +70,7 @@
   },
   "12": {
     "inputs": {
-      "seed": 798123455563205,
+      "seed": 798123455563204,
       "steps": 6,
       "cfg": 1.5,
       "sampler_name": "dpmpp_sde_gpu",
@@ -130,7 +130,7 @@
   },
   "26": {
     "inputs": {
-      "filename_prefix": "%date:yyyy-MM-dd%/LineArt/%date:hhmmss%",
+      "filename_prefix": "2024-03-25/LineArt/205940",
       "images": [
         "20",
         0
@@ -159,24 +159,11 @@
   },
   "30": {
     "inputs": {
-      "text": [
-        "42",
-        0
-      ]
+      "text": "ivy"
     },
     "class_type": "CR Text",
     "_meta": {
       "title": "What you want to create?"
-    }
-  },
-  "42": {
-    "inputs": {
-      "input_id": "r_text",
-      "default_value": "peony"
-    },
-    "class_type": "ComfyUIDeployExternalText",
-    "_meta": {
-      "title": "正面提示词"
     }
   }
 }
