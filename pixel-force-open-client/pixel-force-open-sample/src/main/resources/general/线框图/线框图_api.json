@@ -1,0 +1,182 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "juggernautXL_v9Rdphoto2Lightning.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器(简易)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "text_positive": [
+        "28",
+        0
+      ],
+      "text_negative": "((nude, nsfw), ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, extra limbs, disfigured, deformed, body out of frame, bad anatomy, watermark, signature, cut off, low contrast, underexposed, overexposed, bad art, beginner, amateur, distorted face:1.1)",
+      "milehigh": "sai-line art_Uncategorized",
+      "log_prompt": false
+    },
+    "class_type": "MilehighStyler",
+    "_meta": {
+      "title": "Milehigh Styler"
+    }
+  },
+  "9": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP设置停止层"
+    }
+  },
+  "10": {
+    "inputs": {
+      "text": [
+        "8",
+        0
+      ],
+      "clip": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "11": {
+    "inputs": {
+      "text": [
+        "8",
+        1
+      ],
+      "clip": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "12": {
+    "inputs": {
+      "seed": 798123455563205,
+      "steps": 6,
+      "cfg": 1.5,
+      "sampler_name": "dpmpp_sde_gpu",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "10",
+        0
+      ],
+      "negative": [
+        "11",
+        0
+      ],
+      "latent_image": [
+        "19",
+        4
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "19": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "aspect_ratio": "3:4 portrait 896x1152",
+      "swap_dimensions": "Off",
+      "upscale_factor": 1,
+      "batch_size": 4
+    },
+    "class_type": "CR SDXL Aspect Ratio",
+    "_meta": {
+      "title": "SDXL宽高比v2"
+    }
+  },
+  "20": {
+    "inputs": {
+      "samples": [
+        "12",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "26": {
+    "inputs": {
+      "filename_prefix": "%date:yyyy-MM-dd%/LineArt/%date:hhmmss%",
+      "images": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "28": {
+    "inputs": {
+      "part1": [
+        "30",
+        0
+      ],
+      "part2": "(minimalist line art:1.1)",
+      "part3": "plain blackground",
+      "part4": "(2D, drawing:1.05)",
+      "separator": ","
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "30": {
+    "inputs": {
+      "text": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "What you want to create?"
+    }
+  },
+  "42": {
+    "inputs": {
+      "input_id": "r_text",
+      "default_value": "peony"
+    },
+    "class_type": "ComfyUIDeployExternalText",
+    "_meta": {
+      "title": "正面提示词"
+    }
+  }
+}
