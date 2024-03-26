@@ -17,9 +17,17 @@ import java.util.Date;
  */
 public class GeneralPromptSample03 extends BaseLocalSample {
 
-    public static void main(String[] args) {
-        GeneralPromptSample03 sample = new GeneralPromptSample03();
-        sample.run();
+    private String prompt;
+
+    private String workflowJSON;
+
+    private String workflowApiJSON;
+
+    public BaseLocalSample init(String prompt, String workflowJSON, String workflowApiJSON) {
+        this.prompt = prompt;
+        this.workflowJSON = workflowJSON;
+        this.workflowApiJSON = workflowApiJSON;
+        return this;
     }
 
     @Override
@@ -29,12 +37,9 @@ public class GeneralPromptSample03 extends BaseLocalSample {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = LocalDate.now().format(formatter);
 
-        String workflowJSON = getTextFromResource("/general/线框图/线框图.json");
-        String workflowApiJSON = getTextFromResource("/general/线框图/线框图_api.json");
-
         WorkflowApi workflowApi = JSON.parseObject(workflowApiJSON, WorkflowApi.class);
         workflowApi.setNodeFieldValue(30, "text",
-                "DOG");
+                prompt);
 
         workflowApi.setNodeFieldValue(26, "filename_prefix",
                 formattedDate + File.separator + "LineArt");
