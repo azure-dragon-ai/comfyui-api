@@ -1,6 +1,6 @@
 {
-    "name" : "若依移动端",
-    "appid" : "__UNI__25A9D80",
+    "name" : "comfyui-app",
+    "appid" : "__UNI__117C90E",
     "description" : "",
     "versionName" : "1.1.0",
     "versionCode" : "100",
@@ -58,9 +58,9 @@
         "template" : "static/index.html",
         "devServer" : {
             "port" : 9090,
-            "https" : false
+            "https" : true
         },
-        "title" : "RuoYi-App",
+        "title" : "comfyui",
         "router" : {
             "mode" : "hash",
             "base" : "./"
