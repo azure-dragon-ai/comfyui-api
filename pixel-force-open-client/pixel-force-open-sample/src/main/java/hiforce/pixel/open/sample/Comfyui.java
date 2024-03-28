@@ -7,6 +7,7 @@ import hiforce.pixel.open.sample.general.GeneralPromptSample03;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 public class Comfyui {
 
@@ -21,12 +22,32 @@ public class Comfyui {
         sample.init(prompt, workflowJSON, workflowApiJSON).run();*/
 
 
-        String prompt = "golden hour in beijing, dreamy chinese town,ground_vehicle, tree, motor_vehicle, scenery, motorcycle, east_asian_architecture, lantern, road, outdoors, architecture, paper_lantern, street, building, autumn_leaves, bicycle, autumn, sky, people";
+        String prompt = "Chinese style animals, Chinese style pets, Chinese style wildlife, Chinese style birds, Chinese style cats, Chinese style dogs, Chinese style dragons, Chinese style tigers, Chinese style pandas, Chinese style horses";
         String workflowJSON = sample.getTextFromResource("/general/花园/花园.json");
         String workflowApiJSON = sample.getTextFromResource("/general/花园/花园_api.json");
         WorkflowApi workflowApi = JSON.parseObject(workflowApiJSON, WorkflowApi.class);
-        workflowApi.setNodeFieldValue(6, "text", prompt);
-        workflowApi.setNodeFieldValue(9, "filename_prefix", formattedDate + File.separator + "LineArt");
-        sample.init(workflowJSON, workflowApi).run();
+
+        for (int i = 0; i < 4; i++) {
+            workflowApi.setNodeFieldValue(3, "seed", seed());
+            workflowApi.setNodeFieldValue(6, "text", prompt);
+            workflowApi.setNodeFieldValue(9, "filename_prefix", formattedDate + File.separator + "LineArt");
+            sample.init(workflowJSON, workflowApi).run();
+        }
+    }
+
+    private static long seed() {
+        long seed = System.currentTimeMillis();
+
+        // 初始化随机数生成器
+        Random random = new Random(seed);
+
+        // 生成一个随机长整数作为AI绘画的随机种子
+        long aiPaintingSeed = Math.abs(random.nextLong());
+
+        // 输出生成的随机种子
+        System.out.println("Generated AI painting random seed: " + aiPaintingSeed);
+
+        return aiPaintingSeed;
+
     }
 }
