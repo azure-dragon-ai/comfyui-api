@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hiforce.pixel.open</groupId>
-    <artifactId>pixel-force-open-client-all</artifactId>
-    <name>pixel-force-open-client-all</name>
+    <artifactId>comfyui-api</artifactId>
+    <name>comfyui-api</name>
     <modules>
         <module>pixel-comfy-config-model</module>
         <module>pixel-force-open-client</module>

@@ -61,6 +61,13 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <!-- 代码生成-->
+        <dependency>
+            <groupId>com.hiforce.pixel.open</groupId>
+            <artifactId>comfyui-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

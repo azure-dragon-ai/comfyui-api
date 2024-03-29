@@ -63,7 +63,7 @@
         "title" : "",
         "router" : {
             "mode" : "hash",
-            "base" : "./"
+            "base" : "/"
         }
     }
 }
