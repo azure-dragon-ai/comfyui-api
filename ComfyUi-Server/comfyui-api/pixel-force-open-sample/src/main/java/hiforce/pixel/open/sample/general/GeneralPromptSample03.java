@@ -6,6 +6,10 @@ import hiforce.pixel.open.client.comfy.PromptResult;
 import hiforce.pixel.open.client.comfy.SimpleComfyInvoker;
 import hiforce.pixel.open.sample.common.BaseLocalSample;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
+
 /**
  * @author Rocky Yu
  * @since 2024/2/22
@@ -32,6 +36,10 @@ public class GeneralPromptSample03 extends BaseLocalSample {
 
         System.out.println("General Prompt invoke result:" + JSON.toJSONString(promptResult));
 
-        waitAndQueryTaskExecuteResult(promptResult.getPromptId(), invoker);
+        CompletableFuture<List<String>> future = asyncWaitAndQueryTaskExecuteResult(promptResult.getPromptId(), invoker);
+        future.thenAccept(result -> {
+            System.out.println("General Prompt execute result:" + JSON.toJSONString(result));
+        });
+
     }
 }

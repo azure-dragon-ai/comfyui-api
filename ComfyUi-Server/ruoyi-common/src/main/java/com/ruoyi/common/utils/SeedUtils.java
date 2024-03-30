@@ -8,7 +8,7 @@ import java.util.Random;
  * 版本： 1.0
  */
 public class SeedUtils {
-    private static long seed() {
+    public static long seed() {
         long seed = System.currentTimeMillis();
 
         // 初始化随机数生成器

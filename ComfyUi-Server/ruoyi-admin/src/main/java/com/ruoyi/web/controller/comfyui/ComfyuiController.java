@@ -1,10 +1,14 @@
 package com.ruoyi.web.controller.comfyui;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.SeedUtils;
 import com.ruoyi.system.service.ISysConfigService;
+import hiforce.pixel.comfy.model.node.WorkflowApi;
+import hiforce.pixel.open.sample.general.GeneralPromptSample03;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +29,7 @@ public class ComfyuiController extends BaseController {
     private ISysConfigService configService;
 
     @PostMapping("/prompt")
-    public void prompt(@RequestBody JSONObject prompt) {
+    public AjaxResult prompt(@RequestBody JSONObject prompt) {
         // 在这里处理 prompt 参数
         System.out.println(prompt);
 
@@ -40,12 +44,12 @@ public class ComfyuiController extends BaseController {
         String workflowApiJSON = sample.getTextFromResource("/general/花园/花园_api.json");
         WorkflowApi workflowApi = JSON.parseObject(workflowApiJSON, WorkflowApi.class);
 
-        for (int i = 0; i < 4; i++) {
-            workflowApi.setNodeFieldValue(3, "seed", SeedUtils.seed());
-            workflowApi.setNodeFieldValue(6, "text", prompt.getString("prompt"));
-            workflowApi.setNodeFieldValue(9, "filename_prefix", formattedDate + File.separator + "LineArt");
-            sample.init(workflowJSON, workflowApi).run();
-        }
+        workflowApi.setNodeFieldValue(3, "seed", Long.toString(SeedUtils.seed()));
+        workflowApi.setNodeFieldValue(6, "text", prompt.getString("prompt"));
+        workflowApi.setNodeFieldValue(9, "filename_prefix", DateUtils.getDate() + File.separator + "LineArt");
+        sample.init(workflowJSON, workflowApi).run();
+
+        return success("生图任务执行成功！");
     }
 
 }
