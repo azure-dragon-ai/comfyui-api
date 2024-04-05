@@ -7,6 +7,10 @@ MAINTAINER yangshare <717449318@qq.com>
 
 ADD target/*.jar ruoyi-admin.jar
 
+COPY src/main/resources/application.yml conf/application.yml
+
+COPY src/main/resources/application-druid.yml conf/application-druid.yml
+
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "ruoyi-admin.jar"]
+ENTRYPOINT ["java", "-jar", "ruoyi-admin.jar","--spring.config.location=/conf/application.yml,/conf/application-druid.yml"]
