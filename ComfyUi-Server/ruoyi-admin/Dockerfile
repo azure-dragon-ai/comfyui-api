@@ -14,3 +14,6 @@ COPY src/main/resources/application-druid.yml conf/application-druid.yml
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "ruoyi-admin.jar","--spring.config.location=/conf/application.yml,/conf/application-druid.yml"]
+
+# 设置时区
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
