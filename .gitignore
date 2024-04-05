@@ -35,6 +35,7 @@ hs_err_pid*
 target
 *.class
 .target
+/uni_modules/*
 #bpm
 /*/bpmclasses
 *.log
