@@ -35,7 +35,6 @@ hs_err_pid*
 target
 *.class
 .target
-/uni_modules/*
 #bpm
 /*/bpmclasses
 *.log
@@ -47,4 +46,4 @@ target
 # mac
 settings.xml
 /ComfyUi-App/unpackage/*
-/ComfyUi-App/uni_modules/
+/ComfyUi-App/uni_modules/*
