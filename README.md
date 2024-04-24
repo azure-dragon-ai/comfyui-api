@@ -1,10 +1,13 @@
 # comfyui-api
 
 #### 介绍
+
 对comfyui工具接口的二次封装，并且可视化控制comfyui工作流执行，目的是降低comfyui入手门槛和增加更多玩儿法
 
 #### 软件架构
+
 comfyui本地部署程序+api调用接口
+
 ruoyi前后台管理框架（SpringBoot+Vue前后端分离的Java快速开发框架）
 
 
