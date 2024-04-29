@@ -2,9 +2,14 @@
     <!-- 页面全局配置 -->
     <view class="pageconfig">
         <!--vuetop-->
-        <view style="position:relative;" class="banner1   ">
-            <swiper :current="swiperCurrent1" autoplay="true" @change="swiperChange1" style="height:300rpx;">
-                <swiper-item class="u-swiper-item" v-for="(item, index1) in label1List" :key="index1">
+        <view class="toptitle1  cu-bar bg-" style="min-height: 45px;">
+            <view class="action">
+            </view>
+            <view class="content text-black">AI绘画</view>
+        </view>
+        <view style="position:relative;" class="banner2   ">
+            <swiper :current="swiperCurrent2" autoplay="true" @change="swiperChange2" style="height:300rpx;">
+                <swiper-item class="u-swiper-item" v-for="(item, index2) in label2List" :key="index2">
                     <view class="u-list-image-wrap">
                         <image class="u-swiper-image" :src="item.image"></image>
                     </view>
@@ -12,16 +17,16 @@
             </swiper>
             <view class="u-swiper-indicator flex justify-center" :style="{width:  '100%',bottom:  '0px',padding: '24rpx'}">
                 <block>
-                    <view class="u-indicator-item-number">{{ swiperCurrent1 + 1 }}/{{ label1List.length }}</view>
+                    <view class="u-indicator-item-number">{{ swiperCurrent2 + 1 }}/{{ label2List.length }}</view>
                 </block>
             </view>
         </view>
-        <view class="notice2   ">
+        <view class="notice3   ">
             <uni-notice-bar color="#E62227" show-icon scrollable text="uni-app 版正式发布，开发一次，同时发布iOS、Android、H5、微信小程序、支付宝小程序、百度小程序、头条小程序等7大平台。" />
         </view>
-        <view class="   gongge3 1   response ">
-            <view class=" cu-list grid col-4 no-border">
-                <view class=" cu-item padding-xs " v-for="(item, index) in label3List" :class="['bg-' + item.zibgcolor]" :key="index">
+        <view class="   gongge4 1   response ">
+            <view class=" cu-list grid col-3 no-border">
+                <view class=" cu-item padding " v-for="(item, index) in label4List" :class="['bg-' + item.zibgcolor]" :key="index">
                     <view>
                         <image v-if="item.imgtype !=2" :src="item.pic" class="round" mode="heightFix" style="width: auto;height:70rpx;line-height:0rpx"></image>
                         <view v-if="item.imgtype ==2" :class="['' + item.iconname,'text-' + item.iconcolor]" style="font-size: 70rpx;margin-top: 0rpx;"></view>
@@ -32,19 +37,8 @@
             </view>
         </view>
 
-        <view class="  dibubtn4   " style="position: fixed;bottom: 0px;z-index: 345;width: 100%;border-bottom: 2rpx solid #eee;">
-            <view class="cu-bar tabbar ">
-                <view class="action" v-for="(item,index) in label4List">
-                    <view class="cuIcon-cu-image">
-                        <image v-if="item.imgtype !=2" :src="item.pic" style="width: 50rpx;height:50rpx;"></image>
-                        <view v-if="item.imgtype ==2" :class="['' + item.iconname,'text-' + item.iconcolor]" style="font-size: 60rpx;margin-top: 0rpx;"></view>
-                    </view>
-                    <view>{{item.name}}</view>
-                </view>
-            </view>
-        </view>
 
-        <view style="height: 98rpx;"></view>
+        <!--vuebottom-->
     </view>
 </template>
 
@@ -53,10 +47,10 @@
     export default {
         data() {
             return {
-                swiperCurrent1: 0,
+                swiperCurrent2: 0,
                 /**single**/
 
-                label1List: [{
+                label2List: [{
                     "apiimg": "",
                     "evtform": [],
                     "event": "",
@@ -72,99 +66,74 @@
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20230304/4ea7e37b68ed1b14230f7f2b5d343124.jpg"
                 }],
                 /**vuejs**/
-                label3List: [{
-                    "name": "环球美",
-                    "imgtype": 1,
+                label4List: [{
+                    "name": "环球美食",
+                    "imgtype": 2,
                     "iconcolor": "black",
                     "apiimg": "",
                     "apiname": "",
-                    "iconname": "cuIcon-home",
-                    "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/fd2f58bb7251c6e5df08e8d05a23463b.png"
+                    "iconname": "cuIcon-discover",
+                    "pic": "https://php.diyhey.com//uploads/store/comment/20240408/83e348a393355cbebd05f58a0746f983.png",
+                    "image": "https://php.diyhey.com//uploads/store/comment/20240408/83e348a393355cbebd05f58a0746f983.png"
                 }, {
                     "name": "个护美妆",
-                    "imgtype": 1,
+                    "imgtype": 2,
                     "apiimg": "",
                     "apiname": "",
                     "iconcolor": "black",
-                    "iconname": "home",
+                    "iconname": "cuIcon-like",
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/879d742839d0047baafbb465f9b3ad98.png"
                 }, {
                     "name": "营养保健",
-                    "imgtype": 1,
+                    "imgtype": 2,
                     "apiimg": "",
                     "apiname": "",
                     "iconcolor": "black",
-                    "iconname": "cuIcon-home",
+                    "iconname": "cuIcon-shop",
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/28c860417000b58346fbbb935c6243c1.png"
                 }, {
                     "name": "家居厨卫",
-                    "imgtype": 1,
+                    "imgtype": 2,
                     "apiimg": "",
                     "apiname": "",
                     "iconcolor": "black",
-                    "iconname": "home",
+                    "iconname": "cuIcon-samefill",
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/d5d01475c210e46c357cf3ffaea47535.png"
                 }, {
                     "name": "速食生鲜",
-                    "imgtype": 1,
+                    "imgtype": 2,
                     "apiimg": "",
                     "apiname": "",
                     "iconcolor": "black",
-                    "iconname": "home",
+                    "iconname": "cuIcon-evaluate",
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/0fc1b1545ee701a807c4d7794cc0ec45.png",
                     "url": "/pages/users/user_goods_collection/index"
                 }, {
                     "name": "爱护环境",
-                    "imgtype": 1,
+                    "imgtype": 2,
                     "iconcolor": "black",
                     "apiimg": "",
                     "apiname": "",
-                    "iconname": "home",
+                    "iconname": "cuIcon-deliver",
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/4e227336b9eeb33a2bb3c4b5f912c1af.png",
                     "url": "/pages/users/user_address_list/index"
                 }, {
                     "name": "母婴用品",
-                    "imgtype": 1,
+                    "imgtype": 2,
                     "iconcolor": "black",
                     "apiimg": "",
                     "apiname": "",
-                    "iconname": "home",
+                    "iconname": "cuIcon-weibo",
                     "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/a0e089eae12fefc254284f6bad3b8a03.png",
                     "url": "/pages/users/user_money/index"
-                }],
-                /**vuejs**/
-                label4List: [{
-                    "name": "首页1",
-                    "event": "",
+                }, {
+                    "name": "环球美食",
                     "imgtype": 2,
                     "iconcolor": "black",
-                    "iconname": "cuIcon-home",
-                    "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/d5d01475c210e46c357cf3ffaea47535.png",
-                    "url": "",
-                    "image": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/d5d01475c210e46c357cf3ffaea47535.png"
-                }, {
-                    "name": "分类",
-                    "event": "",
-                    "imgtype": 2,
-                    "iconcolor": "blue",
-                    "iconname": "cuIcon-sort",
-                    "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/28c860417000b58346fbbb935c6243c1.png",
-                    "url": ""
-                }, {
-                    "name": "购物车",
-                    "imgtype": 2,
-                    "iconcolor": "grey",
-                    "iconname": "cuIcon-cart",
-                    "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/879d742839d0047baafbb465f9b3ad98.png",
-                    "url": ""
-                }, {
-                    "name": "我的",
-                    "event": "",
-                    "imgtype": 2,
-                    "iconcolor": "red",
-                    "iconname": "cuIcon-my",
-                    "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/d5d01475c210e46c357cf3ffaea47535.png",
-                    "url": ""
+                    "apiimg": "",
+                    "apiname": "",
+                    "iconname": "cuIcon-present",
+                    "pic": "https://shitangsys.cntdh.net//uploads/store/comment/20220426/fd2f58bb7251c6e5df08e8d05a23463b.png"
                 }],
                 /**vuejs**/
 
@@ -185,8 +154,8 @@
              *
              */
 
-            swiperChange1(e) {
-                this.swiperCurrent1 = e.detail.current;
+            swiperChange2(e) {
+                this.swiperCurrent2 = e.detail.current;
             },
             //获取数据
 
@@ -216,7 +185,6 @@
         width: 100%;
         overflow: hidden;
         overflow-y: scroll;
-        background-color: #ffffff;
         height: 100vh;
     }
 
@@ -224,6 +192,10 @@
 
     /**pagedomcss**/
 
+
+    .toptitle1 {
+        width: 100%;
+    }
 
     /* 常用轮播图 css*/
     .u-swiper-image {
@@ -322,19 +294,15 @@
         align-items: center;
     }
 
-    .banner1 {
+    .banner2 {
         width: 100%;
     }
 
-    .notice2 {
+    .notice3 {
         width: 100%;
     }
 
-    .gongge3 {
-        width: 100%;
-    }
-
-    .dibubtn4 {
+    .gongge4 {
         width: 100%;
     }
 </style>
