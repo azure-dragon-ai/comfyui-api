@@ -7,88 +7,90 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * AI生成工作流对象 ai_workflow
- * 
+ *
  * @author yangshare
  * @date 2024-04-30
  */
-public class AiWorkflow extends BaseEntity
-{
+public class AiWorkflow extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** $column.columnComment */
+    /**
+     * 唯一标识
+     */
     private Long id;
 
-    /** 工作流json文件附件id
- */
-    @Excel(name = "工作流json文件附件id")
+    /**
+     * json文件
+     */
+    @Excel(name = "json文件")
     private Long jsonAttchId;
 
-    /** 工作流api-json文件附件id */
-    @Excel(name = "工作流api-json文件附件id")
+    /**
+     * api-json文件
+     */
+    @Excel(name = "api-json文件")
     private Long apiAttchId;
 
-    /** comfyui工作流名称 */
-    @Excel(name = "comfyui工作流名称")
+    /**
+     * 名称
+     */
+    @Excel(name = "名称")
     private String name;
 
-    /** comfyui工作流api文件的节点组 */
-    @Excel(name = "comfyui工作流api文件的节点组")
+    /**
+     * 节点组
+     */
+    @Excel(name = "节点组")
     private String nodes;
 
-    public void setId(Long id) 
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getId() 
-    {
+    public Long getId() {
         return id;
     }
-    public void setJsonAttchId(Long jsonAttchId) 
-    {
+
+    public void setJsonAttchId(Long jsonAttchId) {
         this.jsonAttchId = jsonAttchId;
     }
 
-    public Long getJsonAttchId() 
-    {
+    public Long getJsonAttchId() {
         return jsonAttchId;
     }
-    public void setApiAttchId(Long apiAttchId) 
-    {
+
+    public void setApiAttchId(Long apiAttchId) {
         this.apiAttchId = apiAttchId;
     }
 
-    public Long getApiAttchId() 
-    {
+    public Long getApiAttchId() {
         return apiAttchId;
     }
-    public void setName(String name) 
-    {
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() 
-    {
+    public String getName() {
         return name;
     }
-    public void setNodes(String nodes) 
-    {
+
+    public void setNodes(String nodes) {
         this.nodes = nodes;
     }
 
-    public String getNodes() 
-    {
+    public String getNodes() {
         return nodes;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("jsonAttchId", getJsonAttchId())
-            .append("apiAttchId", getApiAttchId())
-            .append("name", getName())
-            .append("nodes", getNodes())
-            .toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("id", getId())
+                .append("jsonAttchId", getJsonAttchId())
+                .append("apiAttchId", getApiAttchId())
+                .append("name", getName())
+                .append("nodes", getNodes())
+                .toString();
     }
 }

@@ -18,8 +18,7 @@ public class AiGenTask extends BaseEntity
     /** 该字段唯一且自增 */
     private Long id;
 
-    /** 提示词
- */
+    /** 提示词 */
     @Excel(name = "提示词")
     private String prompt;
 

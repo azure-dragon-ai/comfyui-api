@@ -17,12 +17,10 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" prop="tag">
+      <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" prop="tag">
         <el-input
           v-model="queryParams.tag"
-          placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-"
+          placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -110,8 +108,7 @@
       <el-table-column label="该字段唯一且自增" align="center" prop="id" />
       <el-table-column label="标题" align="center" prop="title" />
       <el-table-column label="壁纸分辨率，比如：1920*1080" align="center" prop="resolution" />
-      <el-table-column label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" align="center" prop="tag" />
+      <el-table-column label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" align="center" prop="tag" />
       <el-table-column label="一个壁纸只能有一个场景分类，分类对应的字典【壁纸场景分类】，存字典value字段" align="center" prop="scenesType" />
       <el-table-column label="一个壁纸只能有一个设备分类，分类对应的字典【壁纸设备分类】，存字典value字段" align="center" prop="deviceType" />
       <el-table-column label="精确到秒" align="center" prop="createtime" width="180">
@@ -141,7 +138,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -159,10 +156,8 @@
         <el-form-item label="壁纸分辨率，比如：1920*1080" prop="resolution">
           <el-input v-model="form.resolution" placeholder="请输入壁纸分辨率，比如：1920*1080" />
         </el-form-item>
-        <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" prop="tag">
-          <el-input v-model="form.tag" placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" />
+        <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" prop="tag">
+          <el-input v-model="form.tag" placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" />
         </el-form-item>
         <el-form-item label="缩略图附件，ai_attchinfo表的id
 " prop="thumbAttchId">

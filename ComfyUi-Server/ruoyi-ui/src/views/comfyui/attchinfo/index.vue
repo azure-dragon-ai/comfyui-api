@@ -17,12 +17,10 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" prop="tag">
+      <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" prop="tag">
         <el-input
           v-model="queryParams.tag"
-          placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-"
+          placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -101,8 +99,7 @@
       <el-table-column label="标题" align="center" prop="title" />
       <el-table-column label="文件类型" align="center" prop="contenttype" />
       <el-table-column label="存储大小，单位为kb，比如：13156465" align="center" prop="storage" />
-      <el-table-column label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" align="center" prop="tag" />
+      <el-table-column label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" align="center" prop="tag" />
       <el-table-column label="存储路径，比如：http://qiniu.com?id=2332323" align="center" prop="filepath" />
       <el-table-column label="存储方式，比如：local 本地、qiniu 七牛、aliyun 阿里云oss" align="center" prop="storageType" />
       <el-table-column label="上传时间，精确到秒" align="center" prop="createtime" width="180">
@@ -129,7 +126,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -147,10 +144,8 @@
         <el-form-item label="存储大小，单位为kb，比如：13156465" prop="storage">
           <el-input v-model="form.storage" placeholder="请输入存储大小，单位为kb，比如：13156465" />
         </el-form-item>
-        <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" prop="tag">
-          <el-input v-model="form.tag" placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30
-" />
+        <el-form-item label="一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" prop="tag">
+          <el-input v-model="form.tag" placeholder="请输入一个壁纸可以有多个标签，标签对应的字典【标签】，存字典value字段，多个用英文逗号间隔，比如：10,20,30" />
         </el-form-item>
         <el-form-item label="存储路径，比如：http://qiniu.com?id=2332323" prop="filepath">
           <el-input v-model="form.filepath" placeholder="请输入存储路径，比如：http://qiniu.com?id=2332323" />

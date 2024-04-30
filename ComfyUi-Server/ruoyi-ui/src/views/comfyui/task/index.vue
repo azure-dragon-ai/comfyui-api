@@ -72,8 +72,7 @@
     <el-table v-loading="loading" :data="taskList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="该字段唯一且自增" align="center" prop="id" />
-      <el-table-column label="提示词
-" align="center" prop="prompt" />
+      <el-table-column label="提示词" align="center" prop="prompt" />
       <el-table-column label="工作流" align="center" prop="workflowId" />
       <el-table-column label="任务执行的结果图片在comfyui客户端生成的任务id，用于查询生成图片" align="center" prop="promptId" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -95,7 +94,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -107,8 +106,7 @@
     <!-- 添加或修改AI生产任务对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="提示词
-" prop="prompt">
+        <el-form-item label="提示词" prop="prompt">
           <el-input v-model="form.prompt" type="textarea" placeholder="请输入内容" />
         </el-form-item>
         <el-form-item label="工作流" prop="workflowId">

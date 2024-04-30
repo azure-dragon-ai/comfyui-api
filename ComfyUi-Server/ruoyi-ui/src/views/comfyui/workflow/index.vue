@@ -1,36 +1,10 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="工作流json文件附件id
-" prop="jsonAttchId">
-        <el-input
-          v-model="queryParams.jsonAttchId"
-          placeholder="请输入工作流json文件附件id
-"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="工作流api-json文件附件id" prop="apiAttchId">
-        <el-input
-          v-model="queryParams.apiAttchId"
-          placeholder="请输入工作流api-json文件附件id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="comfyui工作流名称" prop="name">
+      <el-form-item label="名称" prop="name">
         <el-input
           v-model="queryParams.name"
-          placeholder="请输入comfyui工作流名称"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="comfyui工作流api文件的节点组" prop="nodes">
-        <el-input
-          v-model="queryParams.nodes"
-          placeholder="请输入comfyui工作流api文件的节点组"
+          placeholder="请输入名称"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -89,12 +63,11 @@
 
     <el-table v-loading="loading" :data="workflowList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="${comment}" align="center" prop="id" />
-      <el-table-column label="工作流json文件附件id
-" align="center" prop="jsonAttchId" />
-      <el-table-column label="工作流api-json文件附件id" align="center" prop="apiAttchId" />
-      <el-table-column label="comfyui工作流名称" align="center" prop="name" />
-      <el-table-column label="comfyui工作流api文件的节点组" align="center" prop="nodes" />
+      <el-table-column label="唯一标识" align="center" prop="id" />
+      <el-table-column label="json文件" align="center" prop="jsonAttchId" />
+      <el-table-column label="api-json文件" align="center" prop="apiAttchId" />
+      <el-table-column label="名称" align="center" prop="name" />
+      <el-table-column label="节点组" align="center" prop="nodes" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -114,7 +87,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -124,21 +97,22 @@
     />
 
     <!-- 添加或修改AI生成工作流对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="900px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="工作流json文件附件id
-" prop="jsonAttchId">
-          <el-input v-model="form.jsonAttchId" placeholder="请输入工作流json文件附件id
-" />
+        <el-form-item label="名称" prop="name">
+          <el-input v-model="form.name" placeholder="请输入名称" />
         </el-form-item>
-        <el-form-item label="工作流api-json文件附件id" prop="apiAttchId">
-          <el-input v-model="form.apiAttchId" placeholder="请输入工作流api-json文件附件id" />
+        <el-form-item label="json文件" prop="jsonAttchId">
+          <file-upload v-model="form.jsonAttchId"
+                       :limit="fileLimit"
+                       :file-size="sizeLimit"
+                       :file-type="allowedTypes"/>
         </el-form-item>
-        <el-form-item label="comfyui工作流名称" prop="name">
-          <el-input v-model="form.name" placeholder="请输入comfyui工作流名称" />
+        <el-form-item label="api文件" prop="apiAttchId">
+          <file-upload v-model="form.apiAttchId"/>
         </el-form-item>
-        <el-form-item label="comfyui工作流api文件的节点组" prop="nodes">
-          <el-input v-model="form.nodes" placeholder="请输入comfyui工作流api文件的节点组" />
+        <el-form-item label="节点组">
+          <el-input type="textarea" v-model="form.nodes" :rows="10"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -151,9 +125,12 @@
 
 <script>
 import { listWorkflow, getWorkflow, delWorkflow, addWorkflow, updateWorkflow } from "@/api/comfyui/workflow";
-
+import FileUpload from '@/components/FileUpload'; // 导入FileUpload组件
 export default {
   name: "Workflow",
+  components: {
+    FileUpload, // 注册FileUpload组件
+  },
   data() {
     return {
       // 遮罩层
@@ -178,16 +155,18 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        jsonAttchId: null,
-        apiAttchId: null,
         name: null,
-        nodes: null
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-      }
+      },
+
+      // 添加FileUpload组件相关的属性
+      fileLimit: 1, // 文件数量限制
+      sizeLimit: 5, // 文件大小限制，单位MB
+      allowedTypes: ['json'], // 允许的文件类型
     };
   },
   created() {
