@@ -64,9 +64,9 @@
     <el-table v-loading="loading" :data="workflowList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="唯一标识" align="center" prop="id" />
-      <el-table-column label="json文件" align="center" prop="jsonAttchId" />
-      <el-table-column label="api-json文件" align="center" prop="apiAttchId" />
       <el-table-column label="名称" align="center" prop="name" />
+      <el-table-column label="工作流文件" align="center" prop="jsonFilepath" />
+      <el-table-column label="工作流接口" align="center" prop="apiFilepath" />
       <el-table-column label="节点组" align="center" prop="nodes" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -97,22 +97,25 @@
     />
 
     <!-- 添加或修改AI生成工作流对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="900px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入名称" />
         </el-form-item>
-        <el-form-item label="json文件" prop="jsonAttchId">
-          <file-upload v-model="form.jsonAttchId"
+        <el-form-item label="工作流文件" prop="jsonFilepath">
+          <file-upload v-model="form.jsonFilepath"
                        :limit="fileLimit"
                        :file-size="sizeLimit"
                        :file-type="allowedTypes"/>
         </el-form-item>
-        <el-form-item label="api文件" prop="apiAttchId">
-          <file-upload v-model="form.apiAttchId"/>
+        <el-form-item label="接口文件" prop="apiFilepath">
+          <file-upload v-model="form.apiFilepath"
+                       :limit="fileLimit"
+                       :file-size="sizeLimit"
+                       :file-type="allowedTypes"/>
         </el-form-item>
-        <el-form-item label="节点组">
-          <el-input type="textarea" v-model="form.nodes" :rows="10"/>
+        <el-form-item label="节点组" prop="nodes">
+          <el-input v-model="form.nodes" type="textarea" placeholder="请输入内容" :rows="10"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -191,9 +194,9 @@ export default {
     reset() {
       this.form = {
         id: null,
-        jsonAttchId: null,
-        apiAttchId: null,
         name: null,
+        jsonFilepath: null,
+        apiFilepath: null,
         nodes: null
       };
       this.resetForm("form");

@@ -6,23 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="AiWorkflow" id="AiWorkflowResult">
         <result property="id"    column="id"    />
-        <result property="jsonAttchId"    column="json_attch_id"    />
-        <result property="apiAttchId"    column="api_attch_id"    />
         <result property="name"    column="name"    />
+        <result property="jsonFilepath"    column="json_filepath"    />
+        <result property="apiFilepath"    column="api_filepath"    />
         <result property="nodes"    column="nodes"    />
     </resultMap>
 
     <sql id="selectAiWorkflowVo">
-        select id, json_attch_id, api_attch_id, name, nodes from ai_workflow
+        select id, name, json_filepath, api_filepath, nodes from ai_workflow
     </sql>
 
     <select id="selectAiWorkflowList" parameterType="AiWorkflow" resultMap="AiWorkflowResult">
         <include refid="selectAiWorkflowVo"/>
         <where>  
-            <if test="jsonAttchId != null "> and json_attch_id = #{jsonAttchId}</if>
-            <if test="apiAttchId != null "> and api_attch_id = #{apiAttchId}</if>
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="nodes != null  and nodes != ''"> and nodes = #{nodes}</if>
         </where>
     </select>
     
@@ -34,15 +31,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertAiWorkflow" parameterType="AiWorkflow" useGeneratedKeys="true" keyProperty="id">
         insert into ai_workflow
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="jsonAttchId != null">json_attch_id,</if>
-            <if test="apiAttchId != null">api_attch_id,</if>
             <if test="name != null">name,</if>
+            <if test="jsonFilepath != null">json_filepath,</if>
+            <if test="apiFilepath != null">api_filepath,</if>
             <if test="nodes != null">nodes,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="jsonAttchId != null">#{jsonAttchId},</if>
-            <if test="apiAttchId != null">#{apiAttchId},</if>
             <if test="name != null">#{name},</if>
+            <if test="jsonFilepath != null">#{jsonFilepath},</if>
+            <if test="apiFilepath != null">#{apiFilepath},</if>
             <if test="nodes != null">#{nodes},</if>
          </trim>
     </insert>
@@ -50,9 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateAiWorkflow" parameterType="AiWorkflow">
         update ai_workflow
         <trim prefix="SET" suffixOverrides=",">
-            <if test="jsonAttchId != null">json_attch_id = #{jsonAttchId},</if>
-            <if test="apiAttchId != null">api_attch_id = #{apiAttchId},</if>
             <if test="name != null">name = #{name},</if>
+            <if test="jsonFilepath != null">json_filepath = #{jsonFilepath},</if>
+            <if test="apiFilepath != null">api_filepath = #{apiFilepath},</if>
             <if test="nodes != null">nodes = #{nodes},</if>
         </trim>
         where id = #{id}
