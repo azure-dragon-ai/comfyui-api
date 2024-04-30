@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.comfyui.mapper.AiGenTaskMapper">
+    
+    <resultMap type="AiGenTask" id="AiGenTaskResult">
+        <result property="id"    column="id"    />
+        <result property="prompt"    column="prompt"    />
+        <result property="workflowId"    column="workflow_id"    />
+        <result property="promptId"    column="prompt_id"    />
+    </resultMap>
+
+    <sql id="selectAiGenTaskVo">
+        select id, prompt, workflow_id, prompt_id from ai_gen_task
+    </sql>
+
+    <select id="selectAiGenTaskList" parameterType="AiGenTask" resultMap="AiGenTaskResult">
+        <include refid="selectAiGenTaskVo"/>
+        <where>  
+            <if test="prompt != null  and prompt != ''"> and prompt = #{prompt}</if>
+            <if test="workflowId != null "> and workflow_id = #{workflowId}</if>
+            <if test="promptId != null "> and prompt_id = #{promptId}</if>
+        </where>
+    </select>
+    
+    <select id="selectAiGenTaskById" parameterType="Long" resultMap="AiGenTaskResult">
+        <include refid="selectAiGenTaskVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAiGenTask" parameterType="AiGenTask" useGeneratedKeys="true" keyProperty="id">
+        insert into ai_gen_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="prompt != null">prompt,</if>
+            <if test="workflowId != null">workflow_id,</if>
+            <if test="promptId != null">prompt_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="prompt != null">#{prompt},</if>
+            <if test="workflowId != null">#{workflowId},</if>
+            <if test="promptId != null">#{promptId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAiGenTask" parameterType="AiGenTask">
+        update ai_gen_task
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="prompt != null">prompt = #{prompt},</if>
+            <if test="workflowId != null">workflow_id = #{workflowId},</if>
+            <if test="promptId != null">prompt_id = #{promptId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAiGenTaskById" parameterType="Long">
+        delete from ai_gen_task where id = #{id}
+    </delete>
+
+    <delete id="deleteAiGenTaskByIds" parameterType="String">
+        delete from ai_gen_task where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

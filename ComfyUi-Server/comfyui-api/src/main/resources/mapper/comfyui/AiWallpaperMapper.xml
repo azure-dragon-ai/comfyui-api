@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.comfyui.mapper.AiWallpaperMapper">
+    
+    <resultMap type="AiWallpaper" id="AiWallpaperResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="resolution"    column="resolution"    />
+        <result property="tag"    column="tag"    />
+        <result property="scenesType"    column="scenes_type"    />
+        <result property="deviceType"    column="device_type"    />
+        <result property="createtime"    column="createtime"    />
+        <result property="thumbAttchId"    column="thumb_attch_id"    />
+        <result property="imageAttchId"    column="image_attch_id"    />
+    </resultMap>
+
+    <sql id="selectAiWallpaperVo">
+        select id, title, resolution, tag, scenes_type, device_type, createtime, thumb_attch_id, image_attch_id from ai_wallpaper
+    </sql>
+
+    <select id="selectAiWallpaperList" parameterType="AiWallpaper" resultMap="AiWallpaperResult">
+        <include refid="selectAiWallpaperVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="resolution != null  and resolution != ''"> and resolution = #{resolution}</if>
+            <if test="tag != null  and tag != ''"> and tag = #{tag}</if>
+            <if test="scenesType != null  and scenesType != ''"> and scenes_type = #{scenesType}</if>
+            <if test="deviceType != null  and deviceType != ''"> and device_type = #{deviceType}</if>
+            <if test="createtime != null "> and createtime = #{createtime}</if>
+            <if test="thumbAttchId != null "> and thumb_attch_id = #{thumbAttchId}</if>
+            <if test="imageAttchId != null "> and image_attch_id = #{imageAttchId}</if>
+        </where>
+    </select>
+    
+    <select id="selectAiWallpaperById" parameterType="Long" resultMap="AiWallpaperResult">
+        <include refid="selectAiWallpaperVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAiWallpaper" parameterType="AiWallpaper" useGeneratedKeys="true" keyProperty="id">
+        insert into ai_wallpaper
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="resolution != null">resolution,</if>
+            <if test="tag != null">tag,</if>
+            <if test="scenesType != null">scenes_type,</if>
+            <if test="deviceType != null">device_type,</if>
+            <if test="createtime != null">createtime,</if>
+            <if test="thumbAttchId != null">thumb_attch_id,</if>
+            <if test="imageAttchId != null">image_attch_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="resolution != null">#{resolution},</if>
+            <if test="tag != null">#{tag},</if>
+            <if test="scenesType != null">#{scenesType},</if>
+            <if test="deviceType != null">#{deviceType},</if>
+            <if test="createtime != null">#{createtime},</if>
+            <if test="thumbAttchId != null">#{thumbAttchId},</if>
+            <if test="imageAttchId != null">#{imageAttchId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAiWallpaper" parameterType="AiWallpaper">
+        update ai_wallpaper
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="resolution != null">resolution = #{resolution},</if>
+            <if test="tag != null">tag = #{tag},</if>
+            <if test="scenesType != null">scenes_type = #{scenesType},</if>
+            <if test="deviceType != null">device_type = #{deviceType},</if>
+            <if test="createtime != null">createtime = #{createtime},</if>
+            <if test="thumbAttchId != null">thumb_attch_id = #{thumbAttchId},</if>
+            <if test="imageAttchId != null">image_attch_id = #{imageAttchId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAiWallpaperById" parameterType="Long">
+        delete from ai_wallpaper where id = #{id}
+    </delete>
+
+    <delete id="deleteAiWallpaperByIds" parameterType="String">
+        delete from ai_wallpaper where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.comfyui.mapper.AiWorkflowMapper">
+    
+    <resultMap type="AiWorkflow" id="AiWorkflowResult">
+        <result property="id"    column="id"    />
+        <result property="jsonAttchId"    column="json_attch_id"    />
+        <result property="apiAttchId"    column="api_attch_id"    />
+        <result property="name"    column="name"    />
+        <result property="nodes"    column="nodes"    />
+    </resultMap>
+
+    <sql id="selectAiWorkflowVo">
+        select id, json_attch_id, api_attch_id, name, nodes from ai_workflow
+    </sql>
+
+    <select id="selectAiWorkflowList" parameterType="AiWorkflow" resultMap="AiWorkflowResult">
+        <include refid="selectAiWorkflowVo"/>
+        <where>  
+            <if test="jsonAttchId != null "> and json_attch_id = #{jsonAttchId}</if>
+            <if test="apiAttchId != null "> and api_attch_id = #{apiAttchId}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="nodes != null  and nodes != ''"> and nodes = #{nodes}</if>
+        </where>
+    </select>
+    
+    <select id="selectAiWorkflowById" parameterType="Long" resultMap="AiWorkflowResult">
+        <include refid="selectAiWorkflowVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAiWorkflow" parameterType="AiWorkflow" useGeneratedKeys="true" keyProperty="id">
+        insert into ai_workflow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="jsonAttchId != null">json_attch_id,</if>
+            <if test="apiAttchId != null">api_attch_id,</if>
+            <if test="name != null">name,</if>
+            <if test="nodes != null">nodes,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="jsonAttchId != null">#{jsonAttchId},</if>
+            <if test="apiAttchId != null">#{apiAttchId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="nodes != null">#{nodes},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAiWorkflow" parameterType="AiWorkflow">
+        update ai_workflow
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="jsonAttchId != null">json_attch_id = #{jsonAttchId},</if>
+            <if test="apiAttchId != null">api_attch_id = #{apiAttchId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="nodes != null">nodes = #{nodes},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAiWorkflowById" parameterType="Long">
+        delete from ai_workflow where id = #{id}
+    </delete>
+
+    <delete id="deleteAiWorkflowByIds" parameterType="String">
+        delete from ai_workflow where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

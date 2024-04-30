@@ -141,6 +141,13 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+            <!-- AI生成-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>comfyui-api</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.ruoyi</groupId>

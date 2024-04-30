@@ -61,11 +61,10 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <!-- AI生图-->
         <dependency>
-            <groupId>com.hiforce.pixel.open</groupId>
-            <artifactId>pixel-force-open-sample</artifactId>
-            <version>1.0.6</version>
-            <scope>compile</scope>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>comfyui-api</artifactId>
         </dependency>
 
     </dependencies>

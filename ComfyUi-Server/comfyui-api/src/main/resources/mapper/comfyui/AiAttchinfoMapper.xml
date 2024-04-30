@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.comfyui.mapper.AiAttchinfoMapper">
+    
+    <resultMap type="AiAttchinfo" id="AiAttchinfoResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="contenttype"    column="contenttype"    />
+        <result property="storage"    column="storage"    />
+        <result property="tag"    column="tag"    />
+        <result property="filepath"    column="filepath"    />
+        <result property="storageType"    column="storage_type"    />
+        <result property="createtime"    column="createtime"    />
+    </resultMap>
+
+    <sql id="selectAiAttchinfoVo">
+        select id, title, contenttype, storage, tag, filepath, storage_type, createtime from ai_attchinfo
+    </sql>
+
+    <select id="selectAiAttchinfoList" parameterType="AiAttchinfo" resultMap="AiAttchinfoResult">
+        <include refid="selectAiAttchinfoVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="contenttype != null  and contenttype != ''"> and contenttype = #{contenttype}</if>
+            <if test="storage != null "> and storage = #{storage}</if>
+            <if test="tag != null  and tag != ''"> and tag = #{tag}</if>
+            <if test="filepath != null  and filepath != ''"> and filepath = #{filepath}</if>
+            <if test="storageType != null  and storageType != ''"> and storage_type = #{storageType}</if>
+            <if test="createtime != null "> and createtime = #{createtime}</if>
+        </where>
+    </select>
+    
+    <select id="selectAiAttchinfoById" parameterType="Long" resultMap="AiAttchinfoResult">
+        <include refid="selectAiAttchinfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAiAttchinfo" parameterType="AiAttchinfo" useGeneratedKeys="true" keyProperty="id">
+        insert into ai_attchinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="contenttype != null">contenttype,</if>
+            <if test="storage != null">storage,</if>
+            <if test="tag != null">tag,</if>
+            <if test="filepath != null">filepath,</if>
+            <if test="storageType != null">storage_type,</if>
+            <if test="createtime != null">createtime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="contenttype != null">#{contenttype},</if>
+            <if test="storage != null">#{storage},</if>
+            <if test="tag != null">#{tag},</if>
+            <if test="filepath != null">#{filepath},</if>
+            <if test="storageType != null">#{storageType},</if>
+            <if test="createtime != null">#{createtime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAiAttchinfo" parameterType="AiAttchinfo">
+        update ai_attchinfo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="contenttype != null">contenttype = #{contenttype},</if>
+            <if test="storage != null">storage = #{storage},</if>
+            <if test="tag != null">tag = #{tag},</if>
+            <if test="filepath != null">filepath = #{filepath},</if>
+            <if test="storageType != null">storage_type = #{storageType},</if>
+            <if test="createtime != null">createtime = #{createtime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAiAttchinfoById" parameterType="Long">
+        delete from ai_attchinfo where id = #{id}
+    </delete>
+
+    <delete id="deleteAiAttchinfoByIds" parameterType="String">
+        delete from ai_attchinfo where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
